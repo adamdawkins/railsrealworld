@@ -53,6 +53,8 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers', '4.0.0.rc1'
+  gem 'rails-controller-testing' # If you are using Rails 5.x
   gem 'cucumber-rails', require: false
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'

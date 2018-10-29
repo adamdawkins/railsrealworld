@@ -17,6 +17,9 @@ module Railsrealworld
     # the framework and any gems in your application.
     config.generators do |g|
       g.test_framework :rspec
+      g.javascripts :false
+      g.stylesheets :false
+      g.assets :false
     end
   end
 end

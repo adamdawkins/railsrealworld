@@ -4,7 +4,8 @@ RSpec.describe ArticlesController, type: :controller do
   describe "GET #index" do
     it "returns status ok" do
       get :index
-      expect(response.status).to be(200)
+      expect(response.status).to be 200
+      assert_template 'articles/index'
     end
 
     it "returns all @articles" do

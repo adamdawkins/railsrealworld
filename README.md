@@ -1,7 +1,7 @@
 # README
 
 ## General Functionality
-Authenticate users via JWT (login/signup pages + logout button on settings page)
+[ ] Authenticate users via JWT (login/signup pages + logout button on settings page)
 [ ] CRU* users (sign up & settings page - no deleting required)
     ☑︎ 
 [ ] CRUD Articles

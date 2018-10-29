@@ -30,5 +30,15 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to(user_path(user))
       end
     end
+
+    context "when there is an error" do 
+      before do 
+        allow_any_instance_of(User).to receive(:save).and_return false
+      end
+      it "re-renders the new page" do
+        post :create, :params => { user: params }
+        assert_template 'users/new'
+      end
+    end
   end
 end

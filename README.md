@@ -85,7 +85,8 @@
   - Global
   - or by Tag
   - Pagination for list of articles
-[ ] Sign in/Sign up pages (URL: /login, /register )
+[ ] Sign in
+[x] /Sign up pages (URL: /login, /register )
 [ ] Settings page (URL: /settings )
 [ ] Editor page to create/edit articles
   - /editor

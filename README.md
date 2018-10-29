@@ -2,12 +2,14 @@
 
 ## General Functionality
 Authenticate users via JWT (login/signup pages + logout button on settings page)
-CRU* users (sign up & settings page - no deleting required)
-CRUD Articles
-CR*D Comments on articles (no updating required)
-GET and display paginated lists of articles
-Favorite articles
-Follow other users
+[ ] CRU* users (sign up & settings page - no deleting required)
+    ☑︎ 
+[ ] CRUD Articles
+    ☑︎ 
+[ ] CR*D Comments on articles (no updating required)
+[ ] GET and display paginated lists of articles
+[ ] Favorite articles
+[ ] Follow other users
 
 ## API Spec
 - We'll only follow this as far as a traditional Rails front-end requires

@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     @articles = Article.page(params[:page]).order('created_at DESC')
+    @tags = Tag.all
   end
 
   def new

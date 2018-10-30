@@ -8,11 +8,15 @@ RSpec.describe ArticlesController, type: :controller do
       assert_template 'articles/index'
     end
 
-    # TODO: Why isn't this working?
-    # it "returns all @articles" do
-    #   get :index
-    #   expect(assigns(:articles)).to exist
-    # end
+    it "assigns the first page as @articles" do
+      get :index
+      expect(assigns(:articles)).to eq Article.page(1).order('created_at DESC')
+    end
+
+    it "assigns @tags" do
+      get :index
+      expect(assigns(:tags)).to eq Tag.all
+    end
   end
 
   describe "GET #new" do

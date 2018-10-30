@@ -27,7 +27,7 @@ When("I create an article without a title") do
 end
 
 When("I go to edit the article") do
-  visit edit_article_path(@article)
+  visit "/editor/#{@article.slug}"
 end
 
 When("I update the title of the article to {string}") do |title|

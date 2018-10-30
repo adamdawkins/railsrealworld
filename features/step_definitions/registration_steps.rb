@@ -2,7 +2,13 @@ Given("I do not have an account") do
 end
 
 Given("I have an account with email {string} and password {string}") do |email, password|
-  User.create(email: email, password: password, username: email.split('@').first)
+  @me = User.create(email: email, password: password, username: email.split('@').first)
+end
+
+Given("I have an account") do 
+  steps %{
+    Given I have an account with email "joe.bloggs@example.com" and password "password"
+  }
 end
 
 When("I create an account with username {string}, email {string}, and password {string}") do |username, email, password|

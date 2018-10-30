@@ -17,10 +17,26 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.friendly.find(params[:id])
+    set_article
+  end
+
+  def edit
+    set_article
+  end
+
+  def update
+    article = Article.friendly.find(params[:id])
+    article.update!(article_params)
+
+    flash[:notice] = 'Article updated'
+    redirect_to article
   end
 
   private
+    def set_article
+      @article = Article.friendly.find(params[:id])
+    end
+
     def article_params
       params.require(:article).permit(:title, :body, :description)
     end

@@ -17,6 +17,10 @@ When("I login") do
   }
 end
 
+When("I log out") do
+  click_on "Logout"
+end
+
 
 When("I login with email {string} and password {string}") do |email, password|
   visit "/login"

@@ -48,4 +48,28 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe "DELETE destroy" do
+    let (:user) { FactoryBot.create(:user) }
+    before do
+      session[:user_id] = user.id
+    end
+
+    it "clears the session user id" do
+      delete :destroy
+      expect(session[:user_id]).to be_nil
+    end
+
+    it "redirects to the login page" do 
+      delete :destroy
+
+      expect(response).to redirect_to(login_path)
+    end
+
+    it "sets the flash" do
+      delete :destroy
+
+      expect(flash[:notice]).to_not be_nil
+    end
+  end
 end

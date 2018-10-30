@@ -12,4 +12,6 @@ RSpec.describe User, type: :model do
     expect(user.respond_to? :password_digest).to eq true
     expect(user.respond_to? :authenticate).to eq true
   end
+
+  it { is_expected.to validate_presence_of(:username) }
 end

@@ -4,6 +4,9 @@ end
 Given("I have an account with email {string} and password {string}") do |email, password|
   @me = User.create(email: email, password: password, username: email.split('@').first)
 end
+Given("a user exists with username {string}") do |username|
+  @user = FactoryBot.create(:user, username: username)
+end
 
 Given("I have an account") do
   steps %{

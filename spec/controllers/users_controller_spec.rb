@@ -14,6 +14,24 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe 'get #show' do
+    let (:user) { FactoryBot.create(:user) }
+
+    before do
+      allow(User).to receive_message_chain(:friendly, :find).and_return(user)
+    end
+
+    it "returns the show template" do
+      get :show, params: { id: user }
+      assert_template 'users/show'
+    end
+
+    it "assigns the user" do 
+      get :show, params: { id: user }
+      expect(assigns(:user)).to eq user
+    end
+  end
+
   describe "POST #create" do
     let (:params) { { username: 'username', email: 'email@example.com', password: 'password' } }
 

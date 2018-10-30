@@ -10,6 +10,12 @@ Given("an article exists") do
   @article = FactoryBot.create(:article)
 end
 
+Given("the user has written {int} articles") do |number|
+  number.times do
+    FactoryBot.create(:article, author: @user)
+  end
+end
+
 When("I create an article with title {string}, a description and a body") do |title|
   visit "/editor"
   fill_in "Article Title", with: title

@@ -3,7 +3,7 @@
 ## General Functionality
 [ ] Authenticate users via JWT (login/signup pages + logout button on settings page)
 [ ] CRU* users (sign up & settings page - no deleting required)
-    ☑︎ 
+    ☑︎☑︎ 
 [ ] CRUD Articles
     ☑︎☑︎☑︎ 
 [ ] CR*D Comments on articles (no updating required)
@@ -97,7 +97,7 @@
   - Comments section at bottom of page
   - Delete comment button (only shown to comment's author)
 [ ] Profile page (URL: /profile/:username, /profile/:username/favorites )
-  - Show basic user info
-  - List of articles populated from author's created articles
+  x Show basic user info
+  x List of articles populated from author's created articles
   - or author's favorited articles
 

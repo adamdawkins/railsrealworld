@@ -8,7 +8,7 @@
     ☑︎☑︎☑︎ 
 [ ] CR*D Comments on articles (no updating required)
 [ ] GET and display paginated lists of articles
-[ ] Favorite articles
+[x] Favorite articles
 [ ] Follow other users
 
 ## API Spec
@@ -96,8 +96,8 @@
   x Render markdown from server client side
   - Comments section at bottom of page
   - Delete comment button (only shown to comment's author)
-[ ] Profile page (URL: /profile/:username, /profile/:username/favorites )
+[x] Profile page (URL: /profile/:username, /profile/:username/favorites )
   x Show basic user info
   x List of articles populated from author's created articles
-  - or author's favorited articles
+  x or author's favorited articles
 

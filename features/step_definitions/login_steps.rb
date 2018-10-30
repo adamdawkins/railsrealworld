@@ -11,6 +11,12 @@ Given("I am logged in") do
   puts @me
 end
 
+When("I login") do
+  steps %{
+    When I login with email "#{@me.email}" and password "#{@me.password}"
+  }
+end
+
 
 When("I login with email {string} and password {string}") do |email, password|
   visit "/login"

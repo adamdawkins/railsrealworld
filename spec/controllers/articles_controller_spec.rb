@@ -96,6 +96,11 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #edit" do
     describe "without logged in user" do
+      it "redirects to the login page" do
+        get :edit, params: { id: 1 } 
+
+        expect(response).to redirect_to login_path
+      end
     end
     describe "as a different user to the author" do
     end
@@ -104,6 +109,7 @@ RSpec.describe ArticlesController, type: :controller do
       let (:article) { double("Article", slug: "the-wealth-of-nations") }
       before :each do
         allow(Article).to receive_message_chain(:friendly, :find).and_return(article)
+        allow(subject).to receive(:authorize).and_return true
       end
 
       it "renders the new article form" do
@@ -121,12 +127,21 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "PATCH #update" do
     describe "without logged in user" do
+      it "redirects to the login page" do
+        patch :update, params: { id: 1, article: { title: 'A new title' } }
+
+        expect(response).to redirect_to login_path
+      end
     end
     describe "as a different user to the author" do
     end
 
     describe "as the author" do 
       let (:article) { FactoryBot.create(:article) }
+      before :each do
+        allow(subject).to receive(:authorize).and_return true
+      end
+
       it "redirects to the show template" do
         patch :update, params: { id: article.id, article: { title: 'A new title' } }
 

@@ -25,8 +25,7 @@ RSpec.describe Article, type: :model do
       Tag.create(name: 'food')
     end
     it "finds existing tags and assigns them" do
-
-      expect(FactoryBot.create(:article, tag_list: 'food').tags.first.name).to eq  'food'
+      expect(FactoryBot.create(:article, tag_list: 'food').tags.first.name).to eq 'food'
     end
     it "creates a tag if it doesn't exist" do
       FactoryBot.create(:article, tag_list: 'food, cooking')

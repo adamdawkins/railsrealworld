@@ -6,7 +6,7 @@ class FavouritesController < ApplicationController
     favour = Favouriting.new(article: article, user: current_user)
     favour.save
     flash[:notice] = "Article favourited"
-    
+
     redirect_to article
   end
 end

@@ -26,7 +26,7 @@ RSpec.describe UsersController, type: :controller do
       assert_template 'users/show'
     end
 
-    it "assigns the user" do 
+    it "assigns the user" do
       get :show, params: { id: user }
       expect(assigns(:user)).to eq user
     end
@@ -39,8 +39,8 @@ RSpec.describe UsersController, type: :controller do
 
     describe "when favourites=true query param is passed" do
       it "assigns @articles to the favourites" do
-      get :show, params: { id: user, favourites: true }
-      expect(assigns(:articles)).to eq user.favourite_articles
+        get :show, params: { id: user, favourites: true }
+        expect(assigns(:articles)).to eq user.favourite_articles
       end
     end
   end

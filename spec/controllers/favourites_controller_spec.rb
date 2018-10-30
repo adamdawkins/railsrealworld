@@ -34,7 +34,6 @@ RSpec.describe FavouritesController, type: :controller do
       it "redirects to the article" do
         expect(response).to redirect_to(article_path(article))
       end
-
     end
   end
 end

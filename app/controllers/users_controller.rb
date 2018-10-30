@@ -5,12 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.friendly.find(params[:id])
-     @articles =
-       if params[:favourites]
-         @user.favourite_articles
-       else
-         @user.articles
-       end
+    @articles =
+      if params[:favourites]
+        @user.favourite_articles
+      else
+        @user.articles
+      end
   end
 
   def create

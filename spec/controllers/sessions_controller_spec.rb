@@ -60,7 +60,7 @@ RSpec.describe SessionsController, type: :controller do
       expect(session[:user_id]).to be_nil
     end
 
-    it "redirects to the login page" do 
+    it "redirects to the login page" do
       delete :destroy
 
       expect(response).to redirect_to(login_path)

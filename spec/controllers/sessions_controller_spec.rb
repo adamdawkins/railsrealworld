@@ -16,7 +16,7 @@ RSpec.describe SessionsController, type: :controller do
         allow(User).to receive(:find_by).with(email: "some@email.com").and_return(user)
         allow(user).to receive(:authenticate).and_return(true)
 
-        post :create, params: { :email => "some@email.com", :password => "secret" }
+        post :create, params: { email: "some@email.com", password: "secret" }
 
         expect(session[:user_id]).to eql user.id
         expect(flash[:notice]).to_not be_nil
@@ -28,16 +28,16 @@ RSpec.describe SessionsController, type: :controller do
       it "should not authenticate if user not exists" do
         allow(User).to receive(:find_by).and_return(nil)
 
-        post :create, params: { :email => "some@email.com", :password => "secret" }
+        post :create, params: { email: "some@email.com", password: "secret" }
         expect(assigns(:user)).to be_nil
       end
-  
+
       it "should not authenticate if given password invalid" do
         user = User.create(email: 'some@email.com', password: 'secret')
         allow(User).to receive(:find_by).with(email: "some@email.com").and_return(user)
         allow(user).to receive(:authenticate).and_return(false)
 
-        post :create, params: { :email => "some@email.com", :password => "not_sceret" }
+        post :create, params: { email: "some@email.com", password: "not_sceret" }
 
         expect(session[:user_id]).to be_nil
       end

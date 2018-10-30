@@ -8,7 +8,7 @@ RSpec.describe UsersController, type: :controller do
       assert_template 'users/new'
     end
 
-    it "returns a new user for @user" do 
+    it "returns a new user for @user" do
       get :new
       expect(assigns(:user).class.name).to eq 'User'
     end
@@ -19,24 +19,24 @@ RSpec.describe UsersController, type: :controller do
 
     it "saves the user" do
       expect do
-        post :create, :params => { user: params }
+        post :create, params: { user: params }
       end.to change(User, 'count').from(0).to(1)
     end
-    
-    context "when the user is saved successfully" do 
+
+    context "when the user is saved successfully" do
       it "redirects to the user profile page" do
-        post :create, :params => { user: params }
+        post :create, params: { user: params }
         user = assigns(:user)
         expect(response).to redirect_to(user_path(user))
       end
     end
 
-    context "when there is an error" do 
-      before do 
+    context "when there is an error" do
+      before do
         allow_any_instance_of(User).to receive(:save).and_return false
       end
       it "re-renders the new page" do
-        post :create, :params => { user: params }
+        post :create, params: { user: params }
         assert_template 'users/new'
       end
     end

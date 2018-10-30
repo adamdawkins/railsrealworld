@@ -13,6 +13,5 @@ class SessionsController < ApplicationController
       flash[:alert] = "We couldn't find a user with that email / password"
       render :new
     end
-
   end
 end

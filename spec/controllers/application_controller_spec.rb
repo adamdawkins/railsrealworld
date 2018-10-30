@@ -44,7 +44,7 @@ RSpec.describe ApplicationController do
       end
     end
     describe "without current_user" do
-      before do 
+      before do
         allow(subject).to receive(:current_user).and_return(nil)
       end
       it "redirects to the login page" do

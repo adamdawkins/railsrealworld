@@ -17,13 +17,13 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #new" do
     describe "without logged in user" do
-      it "redirects to the login page" do 
+      it "redirects to the login page" do
         get :new
         expect(response).to redirect_to login_path
       end
     end
 
-    describe "with logged in user" do 
+    describe "with logged in user" do
       before do
         allow(subject).to receive(:authorize).and_return true
       end
@@ -43,21 +43,27 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "POST #create" do
     describe "without logged in user" do
-      it "redirects to the login page" do 
+      it "redirects to the login page" do
         post :create
         expect(response).to redirect_to login_path
       end
     end
     describe "with logged in user" do
-      let (:user) { User.create(email: 'adam@dragondrop.uk', password: 'password', username: 'username') }
+      let (:user) { FactoryBot.create(:user) }
 
       before do
         allow(subject).to receive(:authorize).and_return true
         allow(subject).to receive(:current_user).and_return(user)
-
       end
+
       describe "with valid params" do
-        let (:params) { { title: "This is the title", body: "The body", description: "description" } }
+        let (:params) {
+          { title: "This is the title",
+            body: "The body",
+            description: "description"
+          }
+        }
+
         it "creates an article" do
           expect do
             post :create, params: { article: params }
@@ -97,17 +103,18 @@ RSpec.describe ArticlesController, type: :controller do
   describe "GET #edit" do
     describe "without logged in user" do
       it "redirects to the login page" do
-        get :edit, params: { id: 1 } 
+        get :edit, params: { id: 1 }
 
         expect(response).to redirect_to login_path
       end
     end
+
     describe "as a different user to the author" do
       let(:author) { FactoryBot.create(:user) }
-      let (:article) { author.articles.create(FactoryBot.attributes_for(:article)) }
-      let (:user) { FactoryBot.create(:user) }
+      let(:article) { author.articles.create(FactoryBot.attributes_for(:article)) }
+      let(:user) { FactoryBot.create(:user) }
 
-      before do 
+      before do
         allow(subject).to receive(:current_user).and_return(user)
       end
 
@@ -117,38 +124,38 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to redirect_to article_path(article)
       end
 
-    describe "as the author" do 
-      let (:article) { FactoryBot.create(:article) }
-      before :each do
-        allow(Article).to receive_message_chain(:friendly, :find).and_return(article)
-        allow(subject).to receive(:authorize).and_return true
-        allow(subject).to receive(:current_user).and_return(article.author)
-      end
+      describe "as the author" do
+        let (:article) { FactoryBot.create(:article) }
+        before :each do
+          allow(Article).to receive_message_chain(:friendly, :find).and_return(article)
+          allow(subject).to receive(:authorize).and_return true
+          allow(subject).to receive(:current_user).and_return(article.author)
+        end
 
-      it "renders the new article form" do
-        get :edit, params: { id: article.slug }
+        it "renders the new article form" do
+          get :edit, params: { id: article.slug }
 
-        assert_template "articles/edit"
-      end
+          assert_template "articles/edit"
+        end
 
-      it "assigns @article to the article" do
-        get :edit, params: { id: article.slug }
-        expect(assigns(:article)).to be article
-      end
-    end
-  end
-
-  describe "PATCH #update" do
-    describe "without logged in user" do
-      it "redirects to the login page" do
-        patch :update, params: { id: 1, article: { title: 'A new title' } }
-
-        expect(response).to redirect_to login_path
+        it "assigns @article to the article" do
+          get :edit, params: { id: article.slug }
+          expect(assigns(:article)).to be article
+        end
       end
     end
+
+    describe "PATCH #update" do
+      describe "without logged in user" do
+        it "redirects to the login page" do
+          patch :update, params: { id: 1, article: { title: 'A new title' } }
+
+          expect(response).to redirect_to login_path
+        end
+      end
     end
 
-    describe "as the author" do 
+    describe "as the author" do
       let (:article) { FactoryBot.create(:article) }
       before :each do
         allow(subject).to receive(:authorize).and_return true
@@ -159,7 +166,7 @@ RSpec.describe ArticlesController, type: :controller do
 
         expect(response).to redirect_to article_path(article)
       end
-      
+
       it "sets the flash" do
         patch :update, params: { id: article.id, article: { title: 'A new title' } }
 
@@ -167,5 +174,4 @@ RSpec.describe ArticlesController, type: :controller do
       end
     end
   end
-
 end

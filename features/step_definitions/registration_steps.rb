@@ -5,7 +5,7 @@ Given("I have an account with email {string} and password {string}") do |email, 
   @me = User.create(email: email, password: password, username: email.split('@').first)
 end
 
-Given("I have an account") do 
+Given("I have an account") do
   steps %{
     Given I have an account with email "joe.bloggs@example.com" and password "password"
   }
@@ -23,4 +23,3 @@ end
 Then("I should have an account") do
   expect(User.first.present?).to eq true
 end
-

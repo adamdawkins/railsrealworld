@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get '/editor', to: 'articles#new'
   get '/editor/:id', to: 'articles#edit'
   get '/login', to: 'sessions#new'
-  get '/register', to: 'users#new'  
+  get '/register', to: 'users#new'
   root 'articles#index'
 end

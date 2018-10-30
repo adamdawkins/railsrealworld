@@ -11,6 +11,5 @@ RSpec.describe User, type: :model do
     expect(user.respond_to? :password).to eq true
     expect(user.respond_to? :password_digest).to eq true
     expect(user.respond_to? :authenticate).to eq true
-
   end
 end

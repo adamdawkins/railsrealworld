@@ -1,10 +1,9 @@
 Given ("I have created an article with title {string}") do |title|
-  @article = Article.create({
-    title: title,
-    description: "You should read this article",
-    body: "The article body, in *markdown*",
-    author: @me
-  })
+  @article = Article.create(title: title,
+                            description: "You should read this article",
+                            body: "The article body, in *markdown*",
+                            author: @me
+                           )
 end
 
 Given("an article exists") do

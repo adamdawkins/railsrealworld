@@ -82,9 +82,9 @@
   - List of tags
   List of articles pulled from either 
   - Feed
-  - Global
+  x Global
   - or by Tag
-  - Pagination for list of articles
+  x Pagination for list of articles
 [x] Sign in
 [x] /Sign up pages (URL: /login, /register )
 [ ] Settings page (URL: /settings )

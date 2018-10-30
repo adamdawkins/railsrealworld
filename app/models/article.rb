@@ -8,4 +8,6 @@ class Article < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :description
   validates_presence_of :body
+
+  self.per_page = 20
 end

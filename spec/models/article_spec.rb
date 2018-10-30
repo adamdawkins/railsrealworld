@@ -11,4 +11,8 @@ RSpec.describe Article, type: :model do
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_presence_of(:body) }
   end
+
+  it "has a per_page of 20" do
+    expect(Article.per_page).to eq 20
+  end
 end

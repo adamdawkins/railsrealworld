@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   before_action :verify_authorship, only: [:edit]
 
   def index
-    @articles = Article.all.limit(20)
+    @articles = Article.page(params[:page]).order('created_at DESC')
   end
 
   def new

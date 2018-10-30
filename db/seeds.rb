@@ -57,4 +57,13 @@ Let me explain with an example: _Netflix Originals_."
 ])
 
 
+users = 10.times.collect {|i| User.create(username: Faker::Internet.unique.username, email: Faker::Internet.unique.email, password: Faker::Internet.password)}
 
+articles = 100.times.collect do |i|
+  Article.create({
+    author: users.sample,
+    title: Faker::Lorem.unique.sentence,
+    description: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraphs
+  })
+end

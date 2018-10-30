@@ -30,6 +30,19 @@ RSpec.describe UsersController, type: :controller do
       get :show, params: { id: user }
       expect(assigns(:user)).to eq user
     end
+
+    it "assigns articles to the user's authored articles" do
+      get :show, params: { id: user }
+
+      expect(assigns(:articles)).to eq user.articles
+    end
+
+    describe "when favourites=true query param is passed" do
+      it "assigns @articles to the favourites" do
+      get :show, params: { id: user, favourites: true }
+      expect(assigns(:articles)).to eq user.favourite_articles
+      end
+    end
   end
 
   describe "POST #create" do

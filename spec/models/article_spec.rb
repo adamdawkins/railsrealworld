@@ -5,6 +5,8 @@ RSpec.describe Article, type: :model do
     it { is_expected.to belong_to(:author) }
     it { is_expected.to have_many(:taggings) }
     it { is_expected.to have_many(:tags).through(:taggings) }
+    it { is_expected.to have_many(:favouritings) }
+    it { is_expected.to have_many(:fans).through(:favouritings) }
   end
 
   describe "validation" do

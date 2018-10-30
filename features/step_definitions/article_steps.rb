@@ -10,6 +10,10 @@ Given("an article exists") do
   @article = FactoryBot.create(:article)
 end
 
+Given("an article exists with title {string}") do |title|
+  @article = FactoryBot.create(:article, title: title)
+end
+
 Given("the user has written {int} articles") do |number|
   number.times do
     FactoryBot.create(:article, author: @user)
@@ -29,6 +33,14 @@ When("I create an article without a title") do
   steps %{
     When I create an article with title "", a description and a body
   }
+end
+
+When(/I go to the article.*$/) do
+  visit article_path @article
+end
+
+When("I favourite the article") do
+  click_on "Favorite Post", match: :first
 end
 
 When("I go to edit the article") do

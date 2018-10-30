@@ -103,13 +103,26 @@ RSpec.describe ArticlesController, type: :controller do
       end
     end
     describe "as a different user to the author" do
-    end
+      let(:author) { FactoryBot.create(:user) }
+      let (:article) { author.articles.create(FactoryBot.attributes_for(:article)) }
+      let (:user) { FactoryBot.create(:user) }
+
+      before do 
+        allow(subject).to receive(:current_user).and_return(user)
+      end
+
+      it "redirects to the article" do
+        get :edit, params: { id: article.slug }
+
+        expect(response).to redirect_to article_path(article)
+      end
 
     describe "as the author" do 
-      let (:article) { double("Article", slug: "the-wealth-of-nations") }
+      let (:article) { FactoryBot.create(:article) }
       before :each do
         allow(Article).to receive_message_chain(:friendly, :find).and_return(article)
         allow(subject).to receive(:authorize).and_return true
+        allow(subject).to receive(:current_user).and_return(article.author)
       end
 
       it "renders the new article form" do
@@ -133,7 +146,6 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to redirect_to login_path
       end
     end
-    describe "as a different user to the author" do
     end
 
     describe "as the author" do 

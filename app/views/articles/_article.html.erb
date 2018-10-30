@@ -1,0 +1,8 @@
+<div class="article-preview">
+  <%= render "article_meta", article: article %>
+  <%= link_to article, class: "preview-link" do %>
+    <h1><%= article.title %></h1>
+    <p><%= article.description %></p>
+    <span>Read more...</span>
+  <% end %>
+</div>

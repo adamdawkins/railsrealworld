@@ -1,0 +1,24 @@
+  <div class="article-meta">
+    <a href="profile.html"><img src="http://i.imgur.com/Qr71crq.jpg" /></a>
+    <div class="info">
+      <a href="" class="author">@<%= article.author.username %></a>
+      <span class="date"><%= article.created_at.strftime('%d %B') %></span>
+    </div>
+    <% if local_assigns[:show_page] %>
+      <button class="btn btn-sm btn-outline-secondary">
+        <i class="ion-plus-round"></i>
+        &nbsp;
+        Follow @<%= article.author.username %><span class="counter">(10)</span>
+      </button>
+      &nbsp;&nbsp;
+      <button class="btn btn-sm btn-outline-primary">
+        <i class="ion-heart"></i>
+        &nbsp;
+        Favorite Post <span class="counter">(29)</span>
+      </button>
+    <% else %>
+      <button class="btn btn-outline-primary btn-sm pull-xs-right">
+        <i class="ion-heart"></i> 29
+      </button>
+    <% end %>
+  </div>

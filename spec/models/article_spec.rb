@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   describe "relations" do
     it { is_expected.to belong_to(:author) }
+    it { is_expected.to have_many(:taggings) }
+    it { is_expected.to have_many(:tags).through(:taggings) }
   end
 
   describe "validation" do

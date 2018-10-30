@@ -3,6 +3,8 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
 
   belongs_to :author, class_name: "User", foreign_key: "author_id"
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   validates_presence_of :author
   validates_presence_of :title

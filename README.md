@@ -5,7 +5,7 @@
 [ ] CRU* users (sign up & settings page - no deleting required)
     ☑︎ 
 [ ] CRUD Articles
-    ☑︎☑︎ 
+    ☑︎☑︎☑︎ 
 [ ] CR*D Comments on articles (no updating required)
 [ ] GET and display paginated lists of articles
 [ ] Favorite articles
@@ -88,9 +88,9 @@
 [x] Sign in
 [x] /Sign up pages (URL: /login, /register )
 [ ] Settings page (URL: /settings )
-[ ] Editor page to create/edit articles
+[x] Editor page to create/edit articles
   x /editor
-  - /editor/:slug
+  x /editor/:slug
 [x] Article page (URL: /article/article-slug-here )
   - Delete article button (only shown to article's author)
   x Render markdown from server client side

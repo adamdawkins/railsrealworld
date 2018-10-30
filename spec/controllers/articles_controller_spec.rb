@@ -78,7 +78,7 @@ RSpec.describe ArticlesController, type: :controller do
   describe "GET #show" do
     let (:article) { double("Article") }
     before :each do
-      allow(Article).to receive(:find).and_return(article)
+      allow(Article).to receive_message_chain(:friendly, :find).and_return(article)
     end
 
     it "assigns @article" do

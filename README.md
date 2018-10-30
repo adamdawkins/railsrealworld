@@ -91,7 +91,7 @@
 [ ] Editor page to create/edit articles
   x /editor
   - /editor/:slug
-[ ] Article page (URL: /article/article-slug-here )
+[x] Article page (URL: /article/article-slug-here )
   - Delete article button (only shown to article's author)
   x Render markdown from server client side
   - Comments section at bottom of page

@@ -9,11 +9,12 @@ Feature: Create an Article
     Given I am logged in
     When I create an article with title "This is my article", a description and a body
     Then an article with title "This is my article" should exist
+    And I should see "This is my article"
 
   Scenario: User not logged in
     Given I am not logged in
-    When I create an article with title "This is my article", a description and a body
-    Then an article with title "This is my article" should not exist
+    When I go to "/editor"
+    Then I should be at "/login"
 
   Scenario: Invalid article
     Given I am logged in

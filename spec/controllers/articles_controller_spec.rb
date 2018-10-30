@@ -13,4 +13,83 @@ RSpec.describe ArticlesController, type: :controller do
       expect(Article.all).to eq assigns(:articles)
     end
   end
+
+  describe "GET #new" do
+    describe "without logged in user" do
+      it "redirects to the login page" do 
+        get :new
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    describe "with logged in user" do 
+      before do
+        allow(subject).to receive(:authorize).and_return true
+      end
+
+      it "renders the new article form" do
+        get :new
+
+        assert_template "articles/new"
+      end
+
+      it "assingns @article to a new article" do
+        get :new
+        expect(assigns(:article)).to be_an Article
+      end
+    end
+  end
+
+  describe "POST #create" do
+    describe "without logged in user" do
+      it "redirects to the login page" do 
+        post :create
+        expect(response).to redirect_to login_path
+      end
+    end
+    describe "with logged in user" do
+      let (:user) { User.create(email: 'adam@dragondrop.uk', password: 'password', username: 'username') }
+
+      before do
+        allow(subject).to receive(:authorize).and_return true
+        allow(subject).to receive(:current_user).and_return(user)
+
+      end
+      describe "with valid params" do
+        let (:params) { { title: "This is the title", body: "The body", description: "description" } }
+        it "creates an article" do
+          expect do
+            post :create, params: { article: params }
+          end.to change(Article, 'count').from(0).to(1)
+        end
+        
+        it "redirects to the article" do
+          post :create, params: { article: params }
+
+          expect(response).to redirect_to article_path(assigns(:article))
+        end
+      end
+
+      describe "with invalid params" do
+      end
+    end
+  end
+
+  describe "GET #show" do
+    let (:article) { double("Article") }
+    before :each do
+      allow(Article).to receive(:find).and_return(article)
+    end
+
+    it "assigns @article" do
+      get :show, params: { id: 1 }
+      expect(assigns(:article)).to eql(article)
+    end
+
+    it "returns the article/show template" do
+      get :show, params: { id: 1 }
+
+      assert_template "articles/show"
+    end
+  end
 end

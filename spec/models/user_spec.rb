@@ -2,6 +2,9 @@ require_relative '../rails_helper'
 require_relative '../../app/models/user'
 
 RSpec.describe User, type: :model do
+  describe "relations" do
+    it { is_expected.to have_many(:articles) }
+  end
   it "has secure password" do
     user = User.new
 

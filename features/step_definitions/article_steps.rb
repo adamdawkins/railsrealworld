@@ -1,15 +1,15 @@
 When("I create an article with title {string}, a description and a body") do |title|
-  Article.create(
-    author: @me,
-    title: title,
-    description: "You should read this article",
-    body: "The article body, in *markdown*"
-  )
+  visit "/editor"
+  fill_in "Article Title", with: title
+  fill_in "article[description]", with: "You should read this article"
+  fill_in "article[body]", with: "The article body, in *markdown*"
+
+  find('input[name="commit"]').click
 end
 
 When("I create an article without a title") do
   steps %{
-    I create an article with title "", a description and a body
+    When I create an article with title "", a description and a body
   }
 end
 
